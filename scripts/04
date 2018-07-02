@@ -1,0 +1,9 @@
+if [ -f ./old ]; then
+	if ! diff /etc/crontab ./old > /dev/null ; then
+		echo "/etc/crontab has been changed" > ./email.txt
+		sendmail root < ./email.txt
+	fi
+else
+	echo "0 0 * * * ./04" | crontab
+fi
+cat /etc/crontab > ./old

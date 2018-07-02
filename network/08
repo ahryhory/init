@@ -1,0 +1,2 @@
+ip=$(nslookup slash16.org | grep 'Address: ' -m 1 | cut -c10-23)
+whois $ip | grep OrgNOCName: | cut -c15-43
